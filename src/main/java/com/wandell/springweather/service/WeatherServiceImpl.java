@@ -16,18 +16,21 @@ public class WeatherServiceImpl implements WeatherService {
     private static final String MAP_QUEST_ENDPOINT = "http://open.mapquestapi.com/geocoding/v1/address?key=%s&location=%s";
     private static final String DARK_SKY_ENDPOINT = "https://api.darksky.net/forecast/%s/%s,%s";
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     @Value("${darksky.apikey}")
     private String darkSkyApiKey;
 
     @Value("${mapquest.apikey}")
     private String mapQuestApiKey;
-    
+
+    public WeatherServiceImpl(RestTemplate restTemplate, ObjectMapper objectMapper) {
+        this.restTemplate = restTemplate;
+        this.objectMapper = objectMapper;
+    }
+
     public Weather getCityWeather(String city) {
         MapDataReturnValue mapData = getMapData(city);
         double[] latLng = mapData.getLatLng();

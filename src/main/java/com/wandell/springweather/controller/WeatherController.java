@@ -11,10 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class WeatherController {
 
-    @Autowired
+    final
     WeatherService weatherService;
 
-    @RequestMapping("/at/{city}")
+    public WeatherController(WeatherService weatherService) {
+        this.weatherService = weatherService;
+    }
+
+    @RequestMapping("/api/weather/{city}")
     public ModelAndView getWeather(@PathVariable("city") String city) {
         Weather weather = weatherService.getCityWeather(city);
         return new ModelAndView("weather", "weather", weather);

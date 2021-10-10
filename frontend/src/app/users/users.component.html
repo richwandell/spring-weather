@@ -1,0 +1,21 @@
+<div>
+  <mat-spinner *ngIf="users.length === 0"></mat-spinner>
+
+  <mat-card *ngFor="let user of users">
+    <mat-card-header>
+      <mat-card-title>{{user.email}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>ID: {{user.id}}</div>
+      <div>Password: {{user.password}}</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div>
+  <form [formGroup]="usersForm" (ngSubmit)="onSubmit()">
+    <input id="email" type="text" formControlName="email">
+    <input id="password" type="text" formControlName="password">
+    <button class="button" type="submit">Save User</button>
+  </form>
+</div>

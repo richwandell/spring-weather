@@ -2,3 +2,4 @@ application-secret.properties
 .idea
 *.iml
 target
+frontend/node_modules
