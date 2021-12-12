@@ -12,8 +12,6 @@ export interface User {
 })
 export class DataService {
 
-  private REST_API_SERVER = "http://localhost:9090";
-
   constructor(private httpClient: HttpClient) {
   }
 
